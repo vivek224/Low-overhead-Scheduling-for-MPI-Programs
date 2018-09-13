@@ -91,9 +91,7 @@
 \begin{figure}[ht!]
   \label{fig:NoiseTransImbPic}
 \subfloat[\label{fig:AmplificationPic1} \small Noise delays almost every iteration.]{\includegraphics[height=1.3in]{pictures/Noise}}
-%  }
-  
-%\visible<1->{
+%  }%\visible<1->{
 \hspace*{0.25in}\subfloat[\label{fig:AmplificationPic3}{\small Performance improves, assuming perfect work re-distribution within each node.} %can be perfectly re-distributed within each node. 
 ]{\includegraphics[height=1.3in]{pictures/NoiseMitigated}}
 %}
@@ -268,9 +266,8 @@ and loosely synchronous MPI applications.\\
 \begin{columns}
   \column{0.5\columnwidth}
   \vspace*{-0.2in}
-\begin{lstlisting}
-  \lstinputlisting{listings/threadedCompRegion-static.c}
-  \end{lstlisting}
+
+\lstinputlisting{./listings/threadedCompRegion-static.c}
   \column{0.5\columnwidth}
 %  \includegraphics[scale=0.15]{./images/legend-dynamic}\\
  \vspace*{-0.2in}
@@ -286,7 +283,7 @@ and loosely synchronous MPI applications.\\
 \column{0.5\columnwidth}
 \vspace*{-0.15in}
 \begin{figure}
-\lstinputlisting{listings/threadedCompRegion-dynamic.c}
+\lstinputlisting{./listings/threadedCompRegion-dynamic.c}
 \end{figure}
 \column{0.5\columnwidth}
   \begin{center}
@@ -336,7 +333,8 @@ and loosely synchronous MPI applications.\\
 \visible<1->{
 \begin{itemize}
 \small \item \small Balances the tradeoff between load balance and locality
- across applications and platforms. \comments{Half is better than dynamic strategies.}
+ across applications and platforms. 
+%\comments{Half is better than dynamic strategies.}
 \item \small Even for NASLU, the~\textit{besf} gives performance gains
   over~\textit{static}, i.e., it benefits from the small amount of dynamic load balancing. 
 %\item \tiny Minimizes the costs in each of the three challenges,
@@ -444,8 +442,7 @@ because we tune to balance the tradeoff between load balance and locality, to mi
 \vspace*{-0.15in}
 \includegraphics[scale=0.17]{plots/scaling-histograms-stat1.png} 
 \includegraphics[scale=0.17]{plots/scaling-histograms-statdyn16.png}
-\caption{\small Iteration Timing Histogram for 3D stencil shown for static scheduling (left) and mixed static/dynamic scheduling(right) at 64 nodes of IBM Power5+. The reduction of performance variation using mixed static/dynamic scheduling    
-results in improved scalability.}
+\caption{\small Iteration Timing Histogram for 3D stencil shown for static scheduling (left) and mixed static/dynamic scheduling(right) at 64 nodes of IBM Power5+. The reduction of performance variation using mixed static/dynamic scheduling results in improved scalability.}
 \end{figure}  
 \end{frame}     
 
@@ -482,7 +479,7 @@ results in improved scalability.}
 \end{frame}
 %TODO: check the question presented in the title of the slide 
 
-%TODO: get another graph - this may not show the results as well.                  
+%TODO: get another graph - this may not show the results as well
 %TODO: show a caption.       
 \begin{frame}
 \frametitle{Problem 2: Search Space is Too Large}
