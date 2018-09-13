@@ -1,7 +1,9 @@
-void my_dyn_init(...) {}
-void my_dyn_next(...) {}
-#pragma omp declare schedule(my_dynamic) init(my_dyn_init) next(my_dyn_next) fini(my_dyn_fini)
+void myDynInit(){}
+void myDynNext(){}
+void myDynFini(){}
+
 void example() {
+    #pragma omp declare schedule(my_dynamic) init(myDynInit) next(myDynNext) fini(myDynFini)
     static schedule_data sd; 
     int chunkSize = 4;
     #pragma omp parallel for schedule(my_dynamic:chunkSize,&sd)

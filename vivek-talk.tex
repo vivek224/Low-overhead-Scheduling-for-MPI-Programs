@@ -4,6 +4,8 @@
 \usetheme{Luebeck}
 \useoutertheme{infolines}
 
+\usepackage{underscore}
+
 %\ifx\notescolors\undefined 
 %\slides\definecolor{foreground}{RGB}{255,255,255}\definecolor{background}{RGB}{24,24,24}
 %\else
@@ -30,7 +32,7 @@
 
 \setbeamertemplate{frametitle}[default][center]
 
-\usepackage{listings}
+\usepackage[0.21]{listings}
 \usepackage{graphicx}
 \usepackage{color}
 \usepackage{url}
@@ -56,8 +58,8 @@
          keywordstyle=[1]\textbf,    % Stil der Keywords                  
          stringstyle=\ttfamily,
          showspaces=false,           % Leerzeichen anzeigen ? 
-         showtabs=false,             % Tabs anzeigen ?                              
-         showstringspaces=false      % Leerzeichen in Strings anzeigen ?   
+         showtabs=false,             % Tabs anzeigen ? 
+         showstringspaces=false,     % Leerzeichen in Strings anzeigen ?   
          commentstyle=\color{green},
          keywordstyle=\color{magenta},
          numberstyle=\tiny\color{gray},
@@ -67,7 +69,7 @@
     captionpos=b,
       numbers=left,                    
     numbersep=5pt,                  
-    showspaces=false,  
+    showspaces=false, 
 }
 
 \usepackage{beamerthemesplit} 
@@ -280,7 +282,7 @@
 
 % Thesis work                                  
 
-\input{./content_vivek-talkthesisWork}
+%\input{./content_vivek-talkthesisWork}
 
 % Current work:
 % Talk about work on PRISMA
@@ -295,7 +297,7 @@
 \end{enumerate}
 \end{frame}
 
-\input{content_vivek-talkPostdocWork}
+%\input{content_vivek-talkPostdocWork}
 
 %\input{subcontent_appWork}
 
