@@ -106,7 +106,7 @@ listings: listings.pdf
 	rm -f listings.aux listings.toc listings.log listings.bbl listings.pdf
 
 clean:
-	rm -f *.aux *.toc *.log *.bbl *.blg thesis.pdf defense.pdf researchQuestionsAndData.pdf defpres.pdf sampleSlides.pdf listings.pdf pres-outline.pdf thesis-outline.pdf schedulueForThesis.pdf vivek-jobTalk.pdf vivek-uscTalk.pdf vivek-talk.pdf
+	rm -f *.aux *.toc *.log *.bbl *.blg *.bcf *.run.xml *.nav *.out *.snm thesis.pdf defense.pdf researchQuestionsAndData.pdf defpres.pdf sampleSlides.pdf listings.pdf pres-outline.pdf thesis-outline.pdf schedulueForThesis.pdf vivek-jobTalk.pdf vivek-uscTalk.pdf vivek-talk.pdf
 #TODO: see if old researchQuestionsAndData should go into realclean, or another command.  
 realclean:
-	rm -f *.aux *.toc *.log *.bbl *.blg vthesis.pdf vthesis.aux vthesis.log vthesis.lot vthesis.toc vthesis.lof thesis.aux thesis.log thesis.lot thesis.toc thesis.lof thesis.pdf defense.pdf researchQuestionsAndData.pdf vthesis.pdf defpres.pdf listings.pdf pres-outline.pdf thesis-outline.pdf scheduleForThesis.pdf reviewPres.pdf vivek-uscTalk.pdf vivek-uscWorkTalk.pdf
+	rm -f *.aux *.toc *.log *.bbl *.blg *.tex~ Makefile~ vthesis.pdf vthesis.aux vthesis.log vthesis.lot vthesis.toc vthesis.lof thesis.aux thesis.log thesis.lot thesis.toc thesis.lof thesis.pdf defense.pdf researchQuestionsAndData.pdf vthesis.pdf defpres.pdf listings.pdf pres-outline.pdf thesis-outline.pdf scheduleForThesis.pdf reviewPres.pdf vivek-uscTalk.pdf vivek-uscWorkTalk.pdf

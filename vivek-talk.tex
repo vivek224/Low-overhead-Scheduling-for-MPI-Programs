@@ -1,10 +1,7 @@
 \documentclass{beamer}
-
 %\documentclass[12pt,t,handout]{beamer} % use for plain 
 \usetheme{Luebeck}
 \useoutertheme{infolines}
-
-
 
 %\ifx\notescolors\undefined 
 %\slides\definecolor{foreground}{RGB}{255,255,255}\definecolor{background}{RGB}{24,24,24}
@@ -115,8 +112,8 @@
 \usepackage{subfig}
 
 \usepackage{tikz}
-\usetikzlibrary{arrows,tikzmark,shadows}
-\usetikzmarklibrary{listings} % for annotating code.
+%\usetikzlibrary{arrows,tikzmark,shadows}
+%\usetikzmarklibrary{listings} % for annotating code.
 
 % used for putting tables with data in slides 
 %\usepackage{pgfplotstable}
@@ -137,7 +134,9 @@
 \setbeamertemplate{caption}[numbered]
 
 \usepackage[absolute,overlay]{textpos}
+
 \setbeamertemplate{navigation symbols}{} 
+
 \setbeamertemplate{footline}{%
     \begin{picture}(54,12.5)(0,0)
     \put(0.9,0.52){%
@@ -147,8 +146,8 @@
         \end{minipage}
     }
     \end{picture}
-} 
 }
+
 
 \usepackage{appendixbeamernumber}
 
@@ -235,12 +234,18 @@
 \end{frame}
 }
 
-
+%\renewcommand{\bibfont}{\footnotesize}
 \renewcommand{\inserttotalframenumber}{\pageref{lastslide}}
+
+%\bibliographystyle{s}
+\bibliography{references.bib}
+
+
+
 
 \begin{document}
 
-\maketitle
+\titlepage
 
 \begin{frame} 
 \begin{columns} 
@@ -337,9 +342,7 @@
 
 \begin{frame}
 \frametitle{Bibliography}
-
-\renewcommand{\bibfont}{\footnotesize}
-\bibliography{references.bib}
+\printbibliography
 \end{frame}
 
 \end{document}
