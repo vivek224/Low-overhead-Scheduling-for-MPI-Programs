@@ -16,8 +16,11 @@ researchQuestionsAndData.pdf: researchQuestionsAndData.tex content_researchQuest
 #	pdflatex researchQuestionsAndData.tex
 #	pdflatex researchQuestionsAndData.tex
 
-vivek-talk.pdf: vivek-talk.tex
-	pdflatex vivek-talk.tex
+vivek-talk.pdf: vivek-talk.tex references.bib
+	pdflatex vivek-talk
+	bibtex vivek-talk
+	pdflatex vivek-talk
+	pdflatex vivek-talk
 
 
 # The thesis.pdf file is the final version of the thesis. 
