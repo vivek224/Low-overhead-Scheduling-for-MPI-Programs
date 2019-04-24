@@ -40,7 +40,7 @@
  Common pattern in CSE application codes.\\
 %including
   \vspace*{0.1in}
-\lstinputlisting{listings/1DstencilUsingMPI.c}
+%\lstinputlisting{listings/MPIstencil.c}
  
 \begin{itemize}
 %\small \item \small Simulations, characterized by timesteps and/or
@@ -214,53 +214,21 @@ although significant ($\approx$ 5\%).
 \begin{center}
 {\tiny Cache misses with L2 misses on top for different OpenMP scheduling strategies.}
 \end{center}}
-\visible<1->{
 \begin{itemize}
 \small \item \small Dynamic/guided $\rightarrow$ increased cache
   misses, suggesting explanation for perf loss we saw. Cache miss calculations in thesis.
-%For both codes, cache misses increase significantly with dynamic or 
-%guided scheduling, suggesting an explanation for the performance loss.
 \end{itemize}
-}
-%TODO: discuss three challenges here. 
 \end{frame}
 
 \begin{frame}[label=objective]
 \frametitle{Objective}
-\visible<1->{
-%\fbox{
-%\begin{verbatim} 
 \underline{\textbf{Objective:}} Design a set of new scheduling
 strategies that handles all three causes of the problem, i.e., thread
 idle time, data movement, and synchronization overhead simultaneously for
 many applications and platforms, in the context of bulk-synchronous
-and loosely synchronous MPI applications.\\
-%\end{verbatim}
-}
-%\visible<1->{\small Can we combine a static and dynamic scheduling
-%scheme, which simultaneously reduces scheduler overhead and load imbalance
-%  (respectively) in an intelligent manner?}\\ 
-\visible<2->{{\tiny.}\\
-%\textbf{Key Idea:} Lots of cores available on a node; use all cores
-%all the time.\\
+and loosely synchronous MPI applications.
 \textbf{Key Idea of Solution:} Intelligently combine the static and dynamic scheduling schemes handle these three problems. 
-%Allocate a fixed fraction of loop
-%iterations statically. Then do remaining loop iterations
-%dynamically.
-%Intelligently 
-%combine the efficiency of static scheduling with adaptivity of
-%dynamic scheduling.
-%{\small We have control over all the
-%cores most of the time. We try to have control over all the cores
-%almost all the time.}\\ 
-%\begin{enumerate} 
-%\item \small Ratio of static loop iterations to all loop iterations is
-%  the \textit{static fraction}.
-%\item \small \textit{How do we select the static fraction?} /- %TODO:
-%take out?   
-%\end{enumerate}
-}
-% all at once, which  OpenMP static scheduling and OpenMP dynamic scheduling. 
+
 \end{frame}
 
 \begin{frame}[label=hybridstatdyn]
@@ -268,14 +236,12 @@ and loosely synchronous MPI applications.\\
 \begin{columns}
   \column{0.5\columnwidth}
   \vspace*{-0.2in}
-\begin{lstlisting}
-  \lstinputlisting{listings/threadedCompRegion-static.c}
-  \end{lstlisting}
+  \lstinputlisting{listings/threadedCRStatic.c}
   \column{0.5\columnwidth}
-%  \includegraphics[scale=0.15]{./images/legend-dynamic}\\
+  %\includegraphics[scale=0.15]{./images/legend-dynamic}\\
  \vspace*{-0.2in}
   \begin{center}
-    \includegraphics[scale=0.31]{images/threadedCompRegion-static}
+    \includegraphics[scale=0.31]{images/threadedCR-static}
   \end{center} 
   \vspace*{-0.4in}
   \begin{center} 
@@ -286,11 +252,11 @@ and loosely synchronous MPI applications.\\
 \column{0.5\columnwidth}
 \vspace*{-0.15in}
 \begin{figure}
-\lstinputlisting{listings/threadedCompRegion-dynamic.c}
+\lstinputlisting{listings/threadedCRDynamic.c}
 \end{figure}
 \column{0.5\columnwidth}
   \begin{center}
-    \includegraphics[scale=0.31]{images/threadedCompRegion-dynamic}
+ \includegraphics[scale=0.31]{images/threadedCompRegion-dynamic.pdf}
   \end{center}
 \vspace*{-0.3in}
 \begin{center}
@@ -302,7 +268,7 @@ and loosely synchronous MPI applications.\\
 %TODO: fix code  to be hybrid sched
 \vspace*{-0.1in}
 \begin{figure} 
-\lstinputlisting{./listings/threadedCompRegion-hybrid.c}
+\lstinputlisting{./listings/threadedCRHybrid.c}
 \end{figure}
 \column{0.5\columnwidth}
 \begin{center}
@@ -310,7 +276,7 @@ and loosely synchronous MPI applications.\\
 \end{center}
 \vspace*{-0.3in}
 \begin{center}
-{\tiny Can reduce imbalance and sched ovhd. simultaneously.\comments{through \hyperlink{expTunedSF}{tuning} static fraction.}}
+{\tiny Can reduce imbalance and sched ovhd. simultaneously.}
 \end{center}
 \end{columns}
 \end{frame}
@@ -376,8 +342,8 @@ because we tune to balance the tradeoff between load balance and locality, to mi
 {\footnotesize Ran CALU with locality-aware Scheduling Schemes on 16-core node using standard compiler flags, thread-to-core pinning.} 
 \vspace*{-0.1in}
 \begin{figure}
-\includegraphics[scale=0.12]{plots/calu_p7_appProfile_dynamicsched.png}\includegraphics[scale=0.12]{plots/calu_p7_appProfile_locawaresched.png}\includegraphics[scale=0.12]{plots/calu_p7_appProfile_locawareopt.png}\\{\tiny Bad data locality, great load balance.}{\tiny Reduced coherence cache misses, moderately good load balance.}{\tiny Even fewer coherence cache misses, good load balance.}\end{figure}\hspace*{0.3in}\begin{figure}[ht!]
-\end{figure}
+\includegraphics[scale=0.12]{plots/calu-p7-appProfile-dynamicschedule.png}\includegraphics[scale=0.12]{plots/caluP7locAwareSched.png}\includegraphics[scale=0.12]{plots/caluP7locAwareOpt.png}\\{
+\tiny Bad data locality, great load balance.}{\tiny Reduced coherence cache misses, moderately good load balance.}{\tiny Even fewer coherence cache misses, good load balance.}\end{figure}\hspace*{0.3in}\
 \vspace*{-0.2in}
 \begin{itemize} 
 \tiny \item \tiny Different solutions provide different balance of load balance and data locality. 
@@ -472,8 +438,8 @@ results in improved scalability.}
 \frametitle{Problem 1: Persistent Load Imbalances Not Handled}
 \begin{figure}
 %\includegraphics[scale=0.44]{../images/noise_pes_jaguar}         
-\subfloat[\small Jaguar quasi-persistence in noise.]{\includegraphics[scale=0.41]{./plots/noise_pes_jaguar}}
-\subfloat[\small Ranger quasi-persistence in noise.]{ \includegraphics[scale=0.41]{./plots/noise_pes_ranger}}
+\subfloat[\small Jaguar quasi-persistence in noise.]{\includegraphics[scale=0.41]{./plots/noisepesjaguar.pdf}}
+\subfloat[\small Ranger quasi-persistence in noise.]{ \includegraphics[scale=0.41]{./plots/noisepesranger}}
 \caption{\small Load imbalance (here shown due to noise) can be persistent, not just transient.}
 \end{figure}
 \end{frame}
@@ -540,7 +506,7 @@ fractions, in increments of 0.1. The minima here is difficult to attain.}
 %\begin{column}{0.5\columnwidth}
 %\fbox{
 \begin{figure}[ht!]
-\includegraphics[width=0.5\columnwidth]{images/mpi_decomp-diff-proc-color}
+\includegraphics[width=0.5\columnwidth]{images/mpiDecomppColor.pdf}
 \end{figure}
 %}
 %\end{column}
@@ -548,7 +514,7 @@ fractions, in increments of 0.1. The minima here is difficult to attain.}
 \visible<1>{
 %\fbox{
 \begin{figure}[ht!]
-\includegraphics[width=0.5\columnwidth]{images/weighted_decomp}
+\includegraphics[width=0.5\columnwidth]{images/weightDecomp}
 \end{figure}
 %}
 }
